@@ -5,25 +5,24 @@ Subject: [PATCH] Rebrand
 
 
 diff --git a/build.gradle.kts b/build.gradle.kts
-index 3030116af88d66c376e794b55a4716381fc7552b..07bc1a3d62f5f875d7ae29f519a74dd30fbd6415 100644
+index 3030116af88d66c376e794b55a4716381fc7552b..cc421de6631f3457447862ac3342960fbe1d9b6b 100644
 --- a/build.gradle.kts
 +++ b/build.gradle.kts
-@@ -7,12 +7,8 @@ plugins {
+@@ -7,12 +7,10 @@ plugins {
  }
  
  dependencies {
 -    // Purpur start
 -    implementation(project(":purpur-api"))
--    implementation("io.papermc.paper:paper-mojangapi:${project.version}") {
--        exclude("io.papermc.paper", "paper-api")
--    }
--    // Purpur end
 +    implementation(project(":tentacles-api")) // Purpur // Tentacles
-+    implementation("io.papermc.paper:paper-mojangapi:1.19.4-R0.1-SNAPSHOT") // Purpur
+     implementation("io.papermc.paper:paper-mojangapi:${project.version}") {
+         exclude("io.papermc.paper", "paper-api")
+     }
+-    // Purpur end
      // Paper start
      implementation("org.jline:jline-terminal-jansi:3.21.0")
      implementation("net.minecrell:terminalconsoleappender:1.3.0")
-@@ -86,7 +82,7 @@ tasks.jar {
+@@ -86,7 +84,7 @@ tasks.jar {
          attributes(
              "Main-Class" to "org.bukkit.craftbukkit.Main",
              "Implementation-Title" to "CraftBukkit",
