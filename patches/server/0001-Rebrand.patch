@@ -5,7 +5,7 @@ Subject: [PATCH] Rebrand
 
 
 diff --git a/build.gradle.kts b/build.gradle.kts
-index 3030116af88d66c376e794b55a4716381fc7552b..cc421de6631f3457447862ac3342960fbe1d9b6b 100644
+index a125c0735cf4814b26ce8a96163bf65f74d23900..89c8904c08e6c18d161116bf8cba44ebf3b0bbc0 100644
 --- a/build.gradle.kts
 +++ b/build.gradle.kts
 @@ -7,12 +7,10 @@ plugins {
@@ -22,7 +22,7 @@ index 3030116af88d66c376e794b55a4716381fc7552b..cc421de6631f3457447862ac3342960f
      // Paper start
      implementation("org.jline:jline-terminal-jansi:3.21.0")
      implementation("net.minecrell:terminalconsoleappender:1.3.0")
-@@ -86,7 +84,7 @@ tasks.jar {
+@@ -87,7 +85,7 @@ tasks.jar {
          attributes(
              "Main-Class" to "org.bukkit.craftbukkit.Main",
              "Implementation-Title" to "CraftBukkit",
@@ -66,7 +66,7 @@ index 462a6eed350fd660ddaf25d567bb6e97b77d0b2b..9e3e1ddb6ff728533e1d0d11ac62de0c
          switch (distance) {
              case -1:
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftServer.java b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-index 3f22bdb85465f7b0f0082715fdd524f6905a0344..475854a878de757cb317a307666a91e51adf9fc9 100644
+index 7a388f0e57bc05634be64b16fa66acdb416ac849..d980b70065b45760fb3ffc73bb96a5aceb5ae10d 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 @@ -261,7 +261,7 @@ import javax.annotation.Nullable; // Paper
