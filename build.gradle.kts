@@ -5,7 +5,7 @@ plugins {
     java
     `maven-publish`
     id("com.github.johnrengelman.shadow") version "8.1.1" apply false
-    id("io.papermc.paperweight.patcher") version "1.5.8"
+    id("io.papermc.paperweight.patcher") version "1.5.11"
 }
 
 allprojects {
@@ -14,7 +14,7 @@ allprojects {
 
     java {
         toolchain {
-            languageVersion.set(JavaLanguageVersion.of(17))
+            languageVersion = JavaLanguageVersion.of(17)
         }
     }
 }
@@ -24,7 +24,7 @@ val paperMavenPublicUrl = "https://repo.papermc.io/repository/maven-public/"
 subprojects {
     tasks.withType<JavaCompile>().configureEach {
         options.encoding = Charsets.UTF_8.name()
-        options.release.set(17)
+        options.release = 17
     }
     tasks.withType<Javadoc> {
         options.encoding = Charsets.UTF_8.name()
@@ -63,30 +63,30 @@ dependencies {
 }
 
 paperweight {
-    serverProject.set(project(":tentacles-server"))
+    serverProject = project(":tentacles-server")
 
-    remapRepo.set(paperMavenPublicUrl)
-    decompileRepo.set(paperMavenPublicUrl)
+    remapRepo = paperMavenPublicUrl
+    decompileRepo = paperMavenPublicUrl
 
     useStandardUpstream("purpur") {
-        url.set(github("PurpurMC", "Purpur"))
-        ref.set(providers.gradleProperty("purpurCommit"))
+        url = github("PurpurMC", "Purpur")
+        ref = providers.gradleProperty("purpurCommit")
 
         withStandardPatcher {
             baseName("Purpur")
 
-            apiPatchDir.set(layout.projectDirectory.dir("patches/api"))
-            apiOutputDir.set(layout.projectDirectory.dir("Tentacles-API"))
+            apiPatchDir = layout.projectDirectory.dir("patches/api")
+            apiOutputDir = layout.projectDirectory.dir("Tentacles-API")
 
-            serverPatchDir.set(layout.projectDirectory.dir("patches/server"))
-            serverOutputDir.set(layout.projectDirectory.dir("Tentacles-Server"))
+            serverPatchDir = layout.projectDirectory.dir("patches/server")
+            serverOutputDir = layout.projectDirectory.dir("Tentacles-Server")
         }
     }
 }
 
 tasks.generateDevelopmentBundle {
-    apiCoordinates.set("org.purpurmc.tentacles:tentacles-api")
-    mojangApiCoordinates.set("io.papermc.paper:paper-mojangapi")
+    apiCoordinates = "org.purpurmc.tentacles:tentacles-api"
+    mojangApiCoordinates = "io.papermc.paper:paper-mojangapi"
     libraryRepositories.set(
         listOf(
             "https://repo.maven.apache.org/maven2/",
