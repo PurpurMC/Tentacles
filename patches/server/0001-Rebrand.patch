@@ -5,7 +5,7 @@ Subject: [PATCH] Rebrand
 
 
 diff --git a/build.gradle.kts b/build.gradle.kts
-index d23ecfabf6bf1e355fb2efe5abd80236259ce3c4..180c329b060d2ac95c7eac7d08253bb04303bb7c 100644
+index 0635aacceec1ba9c753b4dde057876b91336d416..6e3d7376f31e8a5d63b81a576fe206e237de111e 100644
 --- a/build.gradle.kts
 +++ b/build.gradle.kts
 @@ -13,7 +13,7 @@ configurations.named(log4jPlugins.compileClasspathConfigurationName) {
@@ -144,23 +144,23 @@ index a6e5950b5875cafd734300cdfbf58f5d3736f3c8..29b8f525dc6ef0fb93e830312ed3fea8
  
      @Override
 diff --git a/src/main/java/net/minecraft/CrashReport.java b/src/main/java/net/minecraft/CrashReport.java
-index c366d84518979e842a6f10f969a5951539ecac93..f6345e0609f436cfae606c0114e706024bac19e9 100644
+index 710477ae27ebc5afdf0012ef0867d05efd293c24..1d82ed572d9cd8ad9647d9fd3dc2763ddd4be7de 100644
 --- a/src/main/java/net/minecraft/CrashReport.java
 +++ b/src/main/java/net/minecraft/CrashReport.java
-@@ -127,7 +127,7 @@ public class CrashReport {
-         stringbuilder.append("---- Minecraft Crash Report ----\n");
-         // Purpur start
-         stringbuilder.append("// ");
--        stringbuilder.append("// DO NOT REPORT THIS TO PAPER! REPORT TO PURPUR INSTEAD!");
-+        stringbuilder.append("// DO NOT REPORT THIS TO PURPUR! REPORT TO TENTACLES INSTEAD!"); // Tentacles
-         // Purpur end
-         stringbuilder.append("// ");
-         stringbuilder.append(CrashReport.getErrorComment());
+@@ -32,7 +32,7 @@ public class CrashReport {
+     private boolean trackingStackTrace = true;
+     private StackTraceElement[] uncategorizedStackTrace = new StackTraceElement[0];
+     private final SystemReport systemReport = new SystemReport();
+-    private List<String> extraInfo = List.of("", "DO NOT REPORT THIS TO PAPER! REPORT TO PURPUR INSTEAD!", ""); // Purpur - Rebrand
++    private List<String> extraInfo = List.of("", "DO NOT REPORT THIS TO PURPUR! REPORT TO TENTACLES INSTEAD!", ""); // Purpur - Rebrand // Tentacles
+ 
+     public CrashReport(String message, Throwable cause) {
+         io.papermc.paper.util.StacktraceDeobfuscator.INSTANCE.deobfuscateThrowable(cause); // Paper
 diff --git a/src/main/java/net/minecraft/server/MinecraftServer.java b/src/main/java/net/minecraft/server/MinecraftServer.java
-index 330bae815c0a332e3dc9fa7b224c9f92098199b9..7e59db9434a10d932c554234c54d86c9e00dfba8 100644
+index 8bb54ba25c25314b71d1fdf2760563b5fd727ee7..ea03ae464c578d744e16820b6b0472ac110b8027 100644
 --- a/src/main/java/net/minecraft/server/MinecraftServer.java
 +++ b/src/main/java/net/minecraft/server/MinecraftServer.java
-@@ -959,7 +959,7 @@ public abstract class MinecraftServer extends ReentrantBlockableEventLoop<TickTa
+@@ -969,7 +969,7 @@ public abstract class MinecraftServer extends ReentrantBlockableEventLoop<TickTa
          shutdownThread = Thread.currentThread();
          org.spigotmc.WatchdogThread.doStop(); // Paper
          if (!isSameThread()) {
@@ -196,10 +196,10 @@ index 99597258e8e88cd9e2c901c4ac3ff7faeeabee2b..5e8569c0661d6cb38e8dafe47b812c7b
  
          if (stream != null) {
 diff --git a/src/main/java/org/spigotmc/WatchdogThread.java b/src/main/java/org/spigotmc/WatchdogThread.java
-index a353eb9f45af7b7f9bfd92a4a89403335b841840..ccfd1cd4dc9dd62a65f7d791e78938564d8ea642 100644
+index 38a6ffd0e21e29601443ce5b5f66f4f69c4ebde0..54cc61558a35f0e66a9745115b4f74ac01cc06b7 100644
 --- a/src/main/java/org/spigotmc/WatchdogThread.java
 +++ b/src/main/java/org/spigotmc/WatchdogThread.java
-@@ -155,14 +155,14 @@ public final class WatchdogThread extends io.papermc.paper.util.TickThread // Pa
+@@ -83,14 +83,14 @@ public class WatchdogThread extends Thread
                  if (isLongTimeout) {
                  // Paper end
                  log.log( Level.SEVERE, "------------------------------" );
@@ -217,7 +217,7 @@ index a353eb9f45af7b7f9bfd92a4a89403335b841840..ccfd1cd4dc9dd62a65f7d791e7893856
                  //
                  if ( net.minecraft.world.level.Level.lastPhysicsProblem != null )
                  {
-@@ -184,7 +184,7 @@ public final class WatchdogThread extends io.papermc.paper.util.TickThread // Pa
+@@ -112,7 +112,7 @@ public class WatchdogThread extends Thread
                  // Paper end
                  } else
                  {
@@ -226,7 +226,7 @@ index a353eb9f45af7b7f9bfd92a4a89403335b841840..ccfd1cd4dc9dd62a65f7d791e7893856
                      log.log(Level.SEVERE, "The server has not responded for " + (currentTime - lastTick) / 1000 + " seconds! Creating thread dump");
                  }
                  // Paper end - Different message for short timeout
-@@ -205,7 +205,7 @@ public final class WatchdogThread extends io.papermc.paper.util.TickThread // Pa
+@@ -132,7 +132,7 @@ public class WatchdogThread extends Thread
                      WatchdogThread.dumpThread( thread, log );
                  }
                  } else {
