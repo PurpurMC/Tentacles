@@ -157,10 +157,10 @@ index 710477ae27ebc5afdf0012ef0867d05efd293c24..1d82ed572d9cd8ad9647d9fd3dc2763d
      public CrashReport(String message, Throwable cause) {
          io.papermc.paper.util.StacktraceDeobfuscator.INSTANCE.deobfuscateThrowable(cause); // Paper
 diff --git a/src/main/java/org/bukkit/craftbukkit/scheduler/CraftScheduler.java b/src/main/java/org/bukkit/craftbukkit/scheduler/CraftScheduler.java
-index ca8ae8e1c51b937dac916e0b0dc94b5e2e61efeb..632108edb4c76e141403da04381662574d5c1d89 100644
+index 48999a860a3b9ed691691c355beaf3e0674acb95..e33e1ccfebfb4fc1fdc4b26620db1c2a9e841d25 100644
 --- a/src/main/java/org/bukkit/craftbukkit/scheduler/CraftScheduler.java
 +++ b/src/main/java/org/bukkit/craftbukkit/scheduler/CraftScheduler.java
-@@ -503,7 +503,7 @@ public class CraftScheduler implements BukkitScheduler {
+@@ -492,7 +492,7 @@ public class CraftScheduler implements BukkitScheduler {
                  this.parsePending();
              } else {
                  // this.debugTail = this.debugTail.setNext(new CraftAsyncDebugger(currentTick + CraftScheduler.RECENT_TICKS, task.getOwner(), task.getTaskClass())); // Paper
