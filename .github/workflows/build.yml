@@ -13,6 +13,6 @@ jobs:
       - name: Configure Git
         run: git config --global user.email "action@github.com" && git config --global user.name "Github Action"
       - name: Apply patches
-        run: ./gradlew applyPatches --stacktrace
+        run: ./gradlew applyAllPatches --stacktrace
       - name: Build
         run: ./gradlew build --stacktrace
