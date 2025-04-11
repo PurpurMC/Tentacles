@@ -51,10 +51,12 @@ manifest.mf
 # other stuff
 run/
 
-build-data/
-Tentacles-API
-Tentacles-MojangAPI
-Tentacles-Server
-paper-api-generator
+tentacles-api/build.gradle.kts
+tentacles-server/build.gradle.kts
+tentacles-server/src/minecraft
+purpur-api
+purpur-server
+paper-api
+paper-server
 *.jar
 test-plugin.settings.gradle.kts
