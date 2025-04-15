@@ -1,11 +1,14 @@
 --- a/purpur-server/build.gradle.kts
 +++ b/purpur-server/build.gradle.kts
-@@ -29,7 +_,28 @@
+@@ -37,9 +_,33 @@
              outputDir = rootDirectory.dir("paper-server")
          }
      }
 -    activeFork = purpur
-+
++    //activeFork = purpur // Tentacles
+     // Purpur end - Rebrand
+ 
++    // Tentacles start - Rebrand
 +    val tentacles = forks.register("tentacles") {
 +        forks = purpur
 +        upstream.patchRepo("paperServer") {
@@ -27,10 +30,12 @@
 +        }
 +    }
 +    activeFork = tentacles
- 
++    // Tentacles end - Rebrand
++
      spigot {
-         buildDataRef = "3edaf46ec1eed4115ce1b18d2846cded42577e42"
-@@ -115,10 +_,14 @@
+         buildDataRef = "702e1a0a5072b2c4082371d5228cb30525687efc"
+         packageVersion = "v1_21_R4" // also needs to be updated in MappingEnvironment
+@@ -125,10 +_,14 @@
      main {
          java { srcDir("../paper-server/src/main/java") }
          resources { srcDir("../paper-server/src/main/resources") }
@@ -44,17 +49,17 @@
 +        resources { srcDir("../purpur-server/src/test/resources") }
      }
  }
- 
-@@ -142,7 +_,7 @@
+ val log4jPlugins = sourceSets.create("log4jPlugins") {
+@@ -156,7 +_,7 @@
  }
  
  dependencies {
--    implementation(project(":purpur-api"))
-+    implementation(project(":tentacles-api"))
+-    implementation(project(":purpur-api")) // Purpur
++    implementation(project(":tentacles-api")) // Purpur // Tentacles
      implementation("ca.spottedleaf:concurrentutil:0.0.3")
      implementation("org.jline:jline-terminal-ffm:3.27.1") // use ffm on java 22+
      implementation("org.jline:jline-terminal-jni:3.27.1") // fall back to jni on java 21
-@@ -216,14 +_,14 @@
+@@ -236,14 +_,14 @@
          val gitBranch = git.exec(providers, "rev-parse", "--abbrev-ref", "HEAD").get().trim()
          attributes(
              "Main-Class" to "org.bukkit.craftbukkit.Main",
