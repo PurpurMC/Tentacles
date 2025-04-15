@@ -8,7 +8,7 @@ pluginManagement {
 }
 
 plugins {
-    id("org.gradle.toolchains.foojay-resolver-convention") version "0.4.0"
+    id("org.gradle.toolchains.foojay-resolver-convention") version "0.5.0"
 }
 
 if (!file(".git").exists()) {
@@ -29,7 +29,7 @@ if (!file(".git").exists()) {
 
 rootProject.name = "tentacles"
 
-for (name in listOf("Tentacles-API", "Tentacles-Server", "paper-api-generator")) {
+for (name in listOf("tentacles-api", "tentacles-server")) {
     val projName = name.lowercase(Locale.ENGLISH)
     include(projName)
     findProject(":$projName")!!.projectDir = file(name)

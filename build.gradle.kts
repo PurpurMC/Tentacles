@@ -3,27 +3,63 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent
 
 plugins {
     java
-    `maven-publish`
-    id("io.papermc.paperweight.patcher") version "1.7.1"
-}
-
-allprojects {
-    apply(plugin = "java")
-    apply(plugin = "maven-publish")
-
-    java {
-        toolchain {
-            languageVersion = JavaLanguageVersion.of(21)
-        }
-    }
+    id("io.papermc.paperweight.patcher") version "2.0.0-beta.16"
 }
 
 val paperMavenPublicUrl = "https://repo.papermc.io/repository/maven-public/"
 
+paperweight {
+    upstreams.register("purpur") {
+        repo = github("PurpurMC", "Purpur")
+        ref = providers.gradleProperty("purpurCommit")
+
+        patchFile {
+            path = "purpur-server/build.gradle.kts"
+            outputFile = file("tentacles-server/build.gradle.kts")
+            patchFile = file("tentacles-server/build.gradle.kts.patch")
+        }
+        patchFile {
+            path = "purpur-api/build.gradle.kts"
+            outputFile = file("tentacles-api/build.gradle.kts")
+            patchFile = file("tentacles-api/build.gradle.kts.patch")
+        }
+        patchRepo("paperApi") {
+            upstreamPath = "paper-api"
+            patchesDir = file("tentacles-api/paper-patches")
+            outputDir = file("paper-api")
+        }
+        patchDir("purpurApi") {
+            upstreamPath = "purpur-api"
+            excludes = listOf("build.gradle.kts", "build.gradle.kts.patch", "paper-patches")
+            patchesDir = file("tentacles-api/purpur-patches")
+            outputDir = file("purpur-api")
+        }
+    }
+}
+
 subprojects {
-    tasks.withType<JavaCompile>().configureEach {
+    apply(plugin = "java-library")
+    apply(plugin = "maven-publish")
+
+    extensions.configure<JavaPluginExtension> {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(21)
+        }
+    }
+
+    repositories {
+        mavenCentral()
+        maven(paperMavenPublicUrl)
+    }
+
+    tasks.withType<AbstractArchiveTask>().configureEach {
+        isPreserveFileTimestamps = false
+        isReproducibleFileOrder = true
+    }
+    tasks.withType<JavaCompile> {
         options.encoding = Charsets.UTF_8.name()
         options.release = 21
+        options.isFork = true
     }
     tasks.withType<Javadoc> {
         options.encoding = Charsets.UTF_8.name()
@@ -39,81 +75,12 @@ subprojects {
         }
     }
 
-    repositories {
-        mavenCentral()
-        maven(paperMavenPublicUrl)
-        maven("https://jitpack.io")
-    }
-}
-
-repositories {
-    mavenCentral()
-    maven(paperMavenPublicUrl) {
-        content {
-            onlyForConfigurations(configurations.paperclip.name)
-        }
-    }
-}
-
-dependencies {
-    remapper("net.fabricmc:tiny-remapper:0.10.3:fat")
-    decompiler("org.vineflower:vineflower:1.10.1")
-    paperclip("io.papermc:paperclip:3.0.3")
-}
-
-paperweight {
-    serverProject = project(":tentacles-server")
-
-    remapRepo = paperMavenPublicUrl
-    decompileRepo = paperMavenPublicUrl
-
-    useStandardUpstream("purpur") {
-        url = github("PurpurMC", "Purpur")
-        ref = providers.gradleProperty("purpurCommit")
-
-        withStandardPatcher {
-            baseName("Purpur")
-
-            apiPatchDir = layout.projectDirectory.dir("patches/api")
-            apiOutputDir = layout.projectDirectory.dir("Tentacles-API")
-
-            serverPatchDir = layout.projectDirectory.dir("patches/server")
-            serverOutputDir = layout.projectDirectory.dir("Tentacles-Server")
-        }
-
-        patchTasks.register("generatedApi") {
-            isBareDirectory = true
-            upstreamDirPath = "paper-api-generator/generated"
-            patchDir = layout.projectDirectory.dir("patches/generated-api")
-            outputDir = layout.projectDirectory.dir("paper-api-generator/generated")
-        }
-    }
-}
-
-tasks.generateDevelopmentBundle {
-    apiCoordinates = "org.purpurmc.tentacles:tentacles-api"
-    libraryRepositories.addAll(
-        "https://repo.maven.apache.org/maven2/",
-        paperMavenPublicUrl,
-        "https://repo.purpurmc.org/snapshots",
-    )
-}
-
-allprojects {
-    publishing {
+    extensions.configure<PublishingExtension> {
         repositories {
             maven("https://repo.purpurmc.org/snapshots") {
                 name = "tentacles"
                 credentials(PasswordCredentials::class)
             }
-        }
-    }
-}
-
-publishing {
-    publications.create<MavenPublication>("devBundle") {
-        artifact(tasks.generateDevelopmentBundle) {
-            artifactId = "dev-bundle"
         }
     }
 }
