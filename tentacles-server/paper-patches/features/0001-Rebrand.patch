@@ -5,7 +5,7 @@ Subject: [PATCH] Rebrand
 
 
 diff --git a/src/main/java/com/destroystokyo/paper/PaperVersionFetcher.java b/src/main/java/com/destroystokyo/paper/PaperVersionFetcher.java
-index 6ac291288f1e71f56a45e50b650dea4b4adeb763..bf627be29b75236fe037bd8059b0b0476bc508eb 100644
+index a5a7334f7a1f147945079f20aa04b4f317d9e94c..f13266696cfd8eb1af2d5dd1ada0f4be89aaf1b4 100644
 --- a/src/main/java/com/destroystokyo/paper/PaperVersionFetcher.java
 +++ b/src/main/java/com/destroystokyo/paper/PaperVersionFetcher.java
 @@ -36,7 +36,7 @@ public class PaperVersionFetcher implements VersionFetcher {
@@ -78,7 +78,7 @@ index bc7e4e5560708fea89c584b1d8b471f4966f311a..cd548a2a63ad99c0d91eeb7bb4600efd
                  .completer(new ConsoleCommandCompleter(this.server))
                  .option(LineReader.Option.COMPLETE_IN_WORD, true);
 diff --git a/src/main/java/io/papermc/paper/ServerBuildInfoImpl.java b/src/main/java/io/papermc/paper/ServerBuildInfoImpl.java
-index b36e30fd4057a938e4d90cb42a2dca661f16478e..2bc6dfa41f76203320ff60b248dfa68e2acea12b 100644
+index 1b0ee48e28aaa68ddb1f28c23d3c5f5f40505c98..45a3f2576fd0cca58dfdeb75a2217674a8291ef8 100644
 --- a/src/main/java/io/papermc/paper/ServerBuildInfoImpl.java
 +++ b/src/main/java/io/papermc/paper/ServerBuildInfoImpl.java
 @@ -32,6 +32,7 @@ public record ServerBuildInfoImpl(
@@ -93,13 +93,13 @@ index b36e30fd4057a938e4d90cb42a2dca661f16478e..2bc6dfa41f76203320ff60b248dfa68e
          this(
              getManifestAttribute(manifest, ATTRIBUTE_BRAND_ID)
                  .map(Key::key)
--                .orElse(BRAND_PURPUR_ID), // Purpur - Fix pufferfish issues // Purpur - Rebrand
-+                .orElse(BRAND_TENTACLES_ID), // Purpur - Fix pufferfish issues // Purpur - Rebrand // Tentacles
+-                .orElse(BRAND_PURPUR_ID), // Purpur - Rebrand
++                .orElse(BRAND_TENTACLES_ID), // Purpur - Rebrand // Tentacles
              getManifestAttribute(manifest, ATTRIBUTE_BRAND_NAME)
--                .orElse(BRAND_PURPUR_NAME), // Purpur - Fix pufferfish issues // Purpur - Rebrand
-+                .orElse(BRAND_TENTACLES_NAME), // Purpur - Fix pufferfish issues // Purpur - Rebrand
-             SharedConstants.getCurrentVersion().getId(),
-             SharedConstants.getCurrentVersion().getName(),
+-                .orElse(BRAND_PURPUR_NAME), // Purpur - Rebrand
++                .orElse(BRAND_TENTACLES_NAME), // Purpur - Rebrand
+             SharedConstants.getCurrentVersion().id(),
+             SharedConstants.getCurrentVersion().name(),
              getManifestAttribute(manifest, ATTRIBUTE_BUILD_NUMBER)
 @@ -62,7 +63,7 @@ public record ServerBuildInfoImpl(
  
@@ -137,7 +137,7 @@ index 99eb04643fce44c37fd96c99756837ccafe7b559..49111df856edb29cf351a4b71348a639
  
          if (stream != null) {
 diff --git a/src/main/java/org/spigotmc/WatchdogThread.java b/src/main/java/org/spigotmc/WatchdogThread.java
-index b8b5c2da54a4875d0d23ae6f3efb6052ef25463a..48eee291e72b7fcf9bac0dcbb3c5f32fef107a47 100644
+index 39493810336442e74c0fc99fdeb5e073a8f4e95e..c8bc3ddbb4a2381d1a8355443e6b7d78031a179c 100644
 --- a/src/main/java/org/spigotmc/WatchdogThread.java
 +++ b/src/main/java/org/spigotmc/WatchdogThread.java
 @@ -75,14 +75,14 @@ public class WatchdogThread extends ca.spottedleaf.moonrise.common.util.TickThre
