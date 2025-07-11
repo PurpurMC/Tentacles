@@ -34,7 +34,7 @@
 +
      spigot {
          enabled = true
-         buildDataRef = "281ac0de7a76d808753ede97d11b034bc801b63d"
+         buildDataRef = "436eac9815c211be1a2a6ca0702615f995e81c44"
 @@ -125,10 +_,14 @@
      main {
          java { srcDir("../paper-server/src/main/java") }
