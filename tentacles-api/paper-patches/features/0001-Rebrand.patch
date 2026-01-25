@@ -22,10 +22,10 @@ index fb1fe2651e53a9bf46b3632c638e13eea9dcda93..3681474fda6094cfe578a1a0541ee051
       * Gets the {@code ServerBuildInfo}.
       *
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index 69c0ca1b0c0cdbc911ba3f053fafc5624539917d..cdd03791cae7773be90aebd906c448e6a7f3cfe9 100644
+index a17790d2da3008927b79814629e073b2091ce421..14e2739e3986dcc4182e5ad6e18b01d029f6a5ba 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -2399,6 +2399,13 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+@@ -2437,6 +2437,13 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
          }
          // Purpur end
  

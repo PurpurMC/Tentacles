@@ -111,7 +111,7 @@ index 1b0ee48e28aaa68ddb1f28c23d3c5f5f40505c98..45a3f2576fd0cca58dfdeb75a2217674
  
      @Override
 diff --git a/src/main/java/org/bukkit/craftbukkit/scheduler/CraftScheduler.java b/src/main/java/org/bukkit/craftbukkit/scheduler/CraftScheduler.java
-index 2e7c3d4befeb6256ce81ecaa9ed4e8fbcb21651e..b141d13265063500d915f848697c2e8d3dd44d6e 100644
+index 554fc2c53b5028c8f89a0ae69a75e075ba4f4435..72e6801b6d9a16d94cb2ecbc7dd0f22cac36d662 100644
 --- a/src/main/java/org/bukkit/craftbukkit/scheduler/CraftScheduler.java
 +++ b/src/main/java/org/bukkit/craftbukkit/scheduler/CraftScheduler.java
 @@ -491,7 +491,7 @@ public class CraftScheduler implements BukkitScheduler {
@@ -124,20 +124,20 @@ index 2e7c3d4befeb6256ce81ecaa9ed4e8fbcb21651e..b141d13265063500d915f848697c2e8d
                  // (async tasks must live with race-conditions if they attempt to cancel between these few lines of code)
              }
 diff --git a/src/main/java/org/bukkit/craftbukkit/util/Versioning.java b/src/main/java/org/bukkit/craftbukkit/util/Versioning.java
-index 99eb04643fce44c37fd96c99756837ccafe7b559..49111df856edb29cf351a4b71348a639c2da7239 100644
+index e34ceaa77c7e538c8d6bc341c4c6f450488ce426..9aed31dab49cfda91d56c4da2cd79a1cc565ad4d 100644
 --- a/src/main/java/org/bukkit/craftbukkit/util/Versioning.java
 +++ b/src/main/java/org/bukkit/craftbukkit/util/Versioning.java
 @@ -11,7 +11,7 @@ public final class Versioning {
      public static String getBukkitVersion() {
          String result = "Unknown-Version";
  
--        InputStream stream = Bukkit.class.getClassLoader().getResourceAsStream("META-INF/maven/org.purpurmc.purpur/purpur-api/pom.properties"); // Pufferfish // Purpur - Rebrand
-+        InputStream stream = Bukkit.class.getClassLoader().getResourceAsStream("META-INF/maven/org.purpurmc.tentacles/tentacles-api/pom.properties"); // Pufferfish // Purpur - Rebrand // Tentacles
+-        InputStream stream = Bukkit.class.getClassLoader().getResourceAsStream("META-INF/maven/org.purpurmc.purpur/purpur-api/pom.properties"); // Purpur - Rebrand
++        InputStream stream = Bukkit.class.getClassLoader().getResourceAsStream("META-INF/maven/org.purpurmc.tentacles/tentacles-api/pom.properties"); // Purpur - Rebrand // Tentacles
          Properties properties = new Properties();
  
          if (stream != null) {
 diff --git a/src/main/java/org/spigotmc/WatchdogThread.java b/src/main/java/org/spigotmc/WatchdogThread.java
-index 39493810336442e74c0fc99fdeb5e073a8f4e95e..c8bc3ddbb4a2381d1a8355443e6b7d78031a179c 100644
+index bf0cda94d87e46149a21505fc67ddb9ad9af0838..f34ce2ede86d01cabdde616e6f71c339034fa387 100644
 --- a/src/main/java/org/spigotmc/WatchdogThread.java
 +++ b/src/main/java/org/spigotmc/WatchdogThread.java
 @@ -75,14 +75,14 @@ public class WatchdogThread extends ca.spottedleaf.moonrise.common.util.TickThre
