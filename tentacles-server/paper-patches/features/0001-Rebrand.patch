@@ -4,66 +4,6 @@ Date: Fri, 11 Apr 2025 10:35:57 +0300
 Subject: [PATCH] Rebrand
 
 
-diff --git a/src/main/java/com/destroystokyo/paper/PaperVersionFetcher.java b/src/main/java/com/destroystokyo/paper/PaperVersionFetcher.java
-index a5a7334f7a1f147945079f20aa04b4f317d9e94c..f13266696cfd8eb1af2d5dd1ada0f4be89aaf1b4 100644
---- a/src/main/java/com/destroystokyo/paper/PaperVersionFetcher.java
-+++ b/src/main/java/com/destroystokyo/paper/PaperVersionFetcher.java
-@@ -36,7 +36,7 @@ public class PaperVersionFetcher implements VersionFetcher {
-     private static final int DISTANCE_ERROR = -1;
-     private static final int DISTANCE_UNKNOWN = -2;
-     // Purpur start - Rebrand
--    private static final String DOWNLOAD_PAGE = "https://purpurmc.org/downloads";
-+    private static final String DOWNLOAD_PAGE = "https://api.example.com/nonexistent/downloads"; // Tentacles
-     private static int distance = DISTANCE_UNKNOWN; public int distance() { return distance; }
-     // Purpur end - Rebrand
- 
-@@ -52,7 +52,7 @@ public class PaperVersionFetcher implements VersionFetcher {
-         if (build.buildNumber().isEmpty() && build.gitCommit().isEmpty()) {
-             updateMessage = text("You are running a development version without access to version information", color(0xFF5300));
-         } else {
--            updateMessage = getUpdateStatusMessage("PurpurMC/Purpur", build); // Purpur - Rebrand
-+            updateMessage = getUpdateStatusMessage("PurpurMC/Tentacles", build); // Purpur - Rebrand // Tentacles
-         }
-         final @Nullable Component history = this.getHistory();
- 
-@@ -62,16 +62,18 @@ public class PaperVersionFetcher implements VersionFetcher {
-     private static Component getUpdateStatusMessage(final String repo, final ServerBuildInfo build) {
-         //int distance = DISTANCE_ERROR; // Purpur - use field - Rebrand
- 
-+        /* // Tentacles start
-         final OptionalInt buildNumber = build.buildNumber();
-         if (buildNumber.isPresent()) {
-             distance = fetchDistanceFromSiteApi(build, buildNumber.getAsInt());
-         } else {
-+        */ // Tentacles end
-             final Optional<String> gitBranch = build.gitBranch();
-             final Optional<String> gitCommit = build.gitCommit();
-             if (gitBranch.isPresent() && gitCommit.isPresent()) {
-                 distance = fetchDistanceFromGitHub(repo, gitBranch.get(), gitCommit.get());
-             }
--        }
-+        //} // Tentacles
- 
-         return switch (distance) {
-             case DISTANCE_ERROR -> text("* Error obtaining version information", NamedTextColor.RED); // Purpur - Rebrand
-@@ -89,7 +91,7 @@ public class PaperVersionFetcher implements VersionFetcher {
-     private static int fetchDistanceFromSiteApi(final ServerBuildInfo build, final int jenkinsBuild) {
-         try {
-             try (final BufferedReader reader = Resources.asCharSource(
--                URI.create("https://api.purpurmc.org/v2/purpur/" + build.minecraftVersionId()).toURL(), // Purpur - Rebrand
-+                URI.create("https://api.example.com/nonexistent/" + build.minecraftVersionId()).toURL(), // Purpur - Rebrand // Tentacles
-                 StandardCharsets.UTF_8
-             ).openBufferedStream()) {
-                 final JsonObject json = new Gson().fromJson(reader, JsonObject.class);
-@@ -97,7 +99,7 @@ public class PaperVersionFetcher implements VersionFetcher {
-                 final int latest = json.getAsJsonObject("builds").getAsJsonPrimitive("latest").getAsInt(); // Purpur - Rebrand
-                 return latest - jenkinsBuild;
-             } catch (final JsonSyntaxException ex) {
--                LOGGER.error("Error parsing json from Purpur's downloads API", ex); // Purpur - Rebrand
-+                LOGGER.error("Error parsing json from nonexistent downloads API", ex); // Purpur - Rebrand // Tentacles
-                 return DISTANCE_ERROR;
-             }
-         } catch (final IOException e) {
 diff --git a/src/main/java/com/destroystokyo/paper/console/PaperConsole.java b/src/main/java/com/destroystokyo/paper/console/PaperConsole.java
 index bc7e4e5560708fea89c584b1d8b471f4966f311a..cd548a2a63ad99c0d91eeb7bb4600efd50ae4da6 100644
 --- a/src/main/java/com/destroystokyo/paper/console/PaperConsole.java
@@ -123,19 +63,6 @@ index 554fc2c53b5028c8f89a0ae69a75e075ba4f4435..72e6801b6d9a16d94cb2ecbc7dd0f22c
                  // We don't need to parse pending
                  // (async tasks must live with race-conditions if they attempt to cancel between these few lines of code)
              }
-diff --git a/src/main/java/org/bukkit/craftbukkit/util/Versioning.java b/src/main/java/org/bukkit/craftbukkit/util/Versioning.java
-index e34ceaa77c7e538c8d6bc341c4c6f450488ce426..9aed31dab49cfda91d56c4da2cd79a1cc565ad4d 100644
---- a/src/main/java/org/bukkit/craftbukkit/util/Versioning.java
-+++ b/src/main/java/org/bukkit/craftbukkit/util/Versioning.java
-@@ -11,7 +11,7 @@ public final class Versioning {
-     public static String getBukkitVersion() {
-         String result = "Unknown-Version";
- 
--        InputStream stream = Bukkit.class.getClassLoader().getResourceAsStream("META-INF/maven/org.purpurmc.purpur/purpur-api/pom.properties"); // Purpur - Rebrand
-+        InputStream stream = Bukkit.class.getClassLoader().getResourceAsStream("META-INF/maven/org.purpurmc.tentacles/tentacles-api/pom.properties"); // Purpur - Rebrand // Tentacles
-         Properties properties = new Properties();
- 
-         if (stream != null) {
 diff --git a/src/main/java/org/spigotmc/WatchdogThread.java b/src/main/java/org/spigotmc/WatchdogThread.java
 index bf0cda94d87e46149a21505fc67ddb9ad9af0838..f34ce2ede86d01cabdde616e6f71c339034fa387 100644
 --- a/src/main/java/org/spigotmc/WatchdogThread.java

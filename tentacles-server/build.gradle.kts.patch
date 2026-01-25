@@ -1,6 +1,6 @@
 --- a/purpur-server/build.gradle.kts
 +++ b/purpur-server/build.gradle.kts
-@@ -33,9 +_,33 @@
+@@ -32,9 +_,33 @@
              outputDir = rootDirectory.dir("paper-server")
          }
      }
@@ -34,7 +34,7 @@
 +
      spigot {
          enabled = true
-         buildDataRef = "42d18d4c4653ffc549778dbe223f6994a031d69e"
+         buildDataRef = "17f77cee7117ab9d6175f088ae8962bfd04e61a9"
 @@ -122,10 +_,14 @@
      main {
          java { srcDir("../paper-server/src/main/java") }
@@ -56,10 +56,10 @@
  dependencies {
 -    implementation(project(":purpur-api")) // Purpur
 +    implementation(project(":tentacles-api")) // Purpur // Tentacles
-     implementation("ca.spottedleaf:concurrentutil:0.0.7")
+     implementation("ca.spottedleaf:concurrentutil:0.0.8")
      implementation("org.jline:jline-terminal-ffm:3.27.1") // use ffm on java 22+
      implementation("org.jline:jline-terminal-jni:3.27.1") // fall back to jni on java 21
-@@ -228,14 +_,14 @@
+@@ -229,14 +_,14 @@
          val gitBranch = git.exec(providers, "rev-parse", "--abbrev-ref", "HEAD").get().trim()
          attributes(
              "Main-Class" to "org.bukkit.craftbukkit.Main",

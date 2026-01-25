@@ -1,0 +1,66 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: granny <contact@granny.dev>
+Date: Sun, 25 Jan 2026 14:02:11 -0800
+Subject: [PATCH] Rebrand
+
+
+diff --git a/src/main/java/org/purpurmc/purpur/PurpurVersionFetcher.java b/src/main/java/org/purpurmc/purpur/PurpurVersionFetcher.java
+index f2c22af968fbdbbea1bbd07712733c74e0b42333..ddcb0ab2a325227fd2644b6abb926a312aa91172 100644
+--- a/src/main/java/org/purpurmc/purpur/PurpurVersionFetcher.java
++++ b/src/main/java/org/purpurmc/purpur/PurpurVersionFetcher.java
+@@ -36,15 +36,15 @@ public class PurpurVersionFetcher implements VersionFetcher {
+     private static final Logger LOGGER = LogUtils.getClassLogger();
+     private static final int DISTANCE_ERROR = -1;
+     private static final int DISTANCE_UNKNOWN = -2;
+-    private static final String DOWNLOAD_PAGE = "https://purpurmc.org/downloads";
+-    private static final String REPOSITORY = "PurpurMC/Purpur";
++    private static final String DOWNLOAD_PAGE = "https://api.example.com/nonexistent/downloads"; // Tentacles
++    private static final String REPOSITORY = "PurpurMC/Tentacles"; // Tentacles
+     private static final ServerBuildInfo BUILD_INFO;
+     private static final String USER_AGENT;
+     private static final Gson GSON = new Gson();
+ 
+     static {
+         BUILD_INFO = ServerBuildInfo.buildInfo();
+-        USER_AGENT = BUILD_INFO.brandName() + "/" + BUILD_INFO.asString(VERSION_SIMPLE) + " (https://purpurmc.org)";
++        USER_AGENT = BUILD_INFO.brandName() + "/" + BUILD_INFO.asString(VERSION_SIMPLE) + " (https://example.com/nonexistent)"; // Tentacles
+     }
+ 
+     private static int distance = DISTANCE_UNKNOWN;
+@@ -71,16 +71,18 @@ public class PurpurVersionFetcher implements VersionFetcher {
+     }
+ 
+     private static Component getUpdateStatusMessage() {
++        /* // Tentacles start
+         final OptionalInt buildNumber = BUILD_INFO.buildNumber();
+         if (buildNumber.isPresent()) {
+             distance = fetchDistanceFromSiteApi(buildNumber.getAsInt());
+         } else {
++        */ // Tentacles end
+             final Optional<String> gitBranch = BUILD_INFO.gitBranch();
+             final Optional<String> gitCommit = BUILD_INFO.gitCommit();
+             if (gitBranch.isPresent() && gitCommit.isPresent()) {
+                 distance = fetchDistanceFromGitHub(gitBranch.get(), gitCommit.get());
+             }
+-        }
++        //} // Tentacles
+ 
+         return switch (distance) {
+             case DISTANCE_ERROR -> text("* Error obtaining version information", NamedTextColor.RED);
+@@ -98,14 +100,14 @@ public class PurpurVersionFetcher implements VersionFetcher {
+     private static int fetchDistanceFromSiteApi(final int jenkinsBuild) {
+         try {
+             try (final BufferedReader reader = Resources.asCharSource(
+-                URI.create("https://api.purpurmc.org/v2/purpur/" + BUILD_INFO.minecraftVersionId()).toURL(),
++                    URI.create("https://api.example.com/nonexistent/" + BUILD_INFO.minecraftVersionId()).toURL(), // Purpur - Rebrand // Tentacles
+                 StandardCharsets.UTF_8
+             ).openBufferedStream()) {
+                 final JsonObject json = new Gson().fromJson(reader, JsonObject.class);
+                 final int latest = json.getAsJsonObject("builds").getAsJsonPrimitive("latest").getAsInt();
+                 return latest - jenkinsBuild;
+             } catch (final JsonSyntaxException ex) {
+-                LOGGER.error("Error parsing json from Purpur's downloads API", ex);
++                LOGGER.error("Error parsing json from nonexistent downloads API", ex); // Purpur - Rebrand // Tentacles
+                 return DISTANCE_ERROR;
+             }
+         } catch (final IOException e) {
