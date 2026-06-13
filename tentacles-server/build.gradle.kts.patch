@@ -33,7 +33,7 @@
 +    // Tentacles end - Rebrand
 +
      /*updatingMinecraft { // Purpur start - TODO - snapshot - we don't need this
-         // oldPaperCommit = "711c5de2b05df39b72c44ff54e9f9381f8d153cb"
+         oldPaperCommit = "d4fe85375af18bfa88f44d7c1e6a61904ae550cc"
      }*/ // Purpur end - TODO - snapshot - we don't need this
 @@ -105,10 +_,14 @@
      main {
