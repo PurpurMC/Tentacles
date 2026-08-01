@@ -6,6 +6,8 @@ on:
 jobs:
   upstream:
     runs-on: ubuntu-latest
+    permissions:
+        contents: write
     if: "!contains(github.event.commits[0].message, '[ci-skip]')"
     steps:
       - uses: actions/checkout@v6
