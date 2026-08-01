@@ -12,6 +12,9 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v5
       - name: Apply patches
-        run: ./gradlew applyAllPatches --stacktrace
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          ./gradlew applyAllPatches --stacktrace
       - name: Build
         run: ./gradlew build --stacktrace
