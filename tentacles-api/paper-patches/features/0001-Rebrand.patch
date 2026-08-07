@@ -5,7 +5,7 @@ Subject: [PATCH] Rebrand
 
 
 diff --git a/src/main/java/io/papermc/paper/ServerBuildInfo.java b/src/main/java/io/papermc/paper/ServerBuildInfo.java
-index fb1fe2651e53a9bf46b3632c638e13eea9dcda93..3681474fda6094cfe578a1a0541ee051eb2546c4 100644
+index 4c16c200a1fdcfd68f02385d1bffa17f93d1b2d5..d9d1c1cde1852873b9c884c6a0e36041ebcdace4 100644
 --- a/src/main/java/io/papermc/paper/ServerBuildInfo.java
 +++ b/src/main/java/io/papermc/paper/ServerBuildInfo.java
 @@ -25,6 +25,12 @@ public interface ServerBuildInfo {
@@ -22,10 +22,10 @@ index fb1fe2651e53a9bf46b3632c638e13eea9dcda93..3681474fda6094cfe578a1a0541ee051
       * Gets the {@code ServerBuildInfo}.
       *
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index 2c895293585fede17057744dc230c0635778f83b..909d3740bf9e7999a9883a0e327ff69014c675b9 100644
+index d277417d2bd66b84f293e9b3858b5096a3a86fe4..12ba0d9da160c4788e9c00e66887a420189986ff 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -2452,6 +2452,13 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+@@ -2450,6 +2450,13 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
          }
          // Purpur end
  
