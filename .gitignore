@@ -54,9 +54,13 @@ run/
 tentacles-api/build.gradle.kts
 tentacles-server/build.gradle.kts
 tentacles-server/src/minecraft
+tentacles-checkstyle/build.gradle.kts
 purpur-api
 purpur-server
+purpur-checkstyle
 paper-api
 paper-server
+paper-checkstyle
+.checkstyle
 *.jar
 test-plugin.settings.gradle.kts

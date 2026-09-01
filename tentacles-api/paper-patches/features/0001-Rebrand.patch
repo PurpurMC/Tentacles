@@ -5,10 +5,10 @@ Subject: [PATCH] Rebrand
 
 
 diff --git a/src/main/java/io/papermc/paper/ServerBuildInfo.java b/src/main/java/io/papermc/paper/ServerBuildInfo.java
-index 4c16c200a1fdcfd68f02385d1bffa17f93d1b2d5..d9d1c1cde1852873b9c884c6a0e36041ebcdace4 100644
+index 780444eb8eb916ebe09f16092a70919bd99655cc..83a3432b2aeafa2e5648dadc533dbed597d7c6e9 100644
 --- a/src/main/java/io/papermc/paper/ServerBuildInfo.java
 +++ b/src/main/java/io/papermc/paper/ServerBuildInfo.java
-@@ -25,6 +25,12 @@ public interface ServerBuildInfo {
+@@ -23,6 +23,12 @@ public interface ServerBuildInfo {
       */
      Key BRAND_PURPUR_ID = Key.key("purpurmc", "purpur");
      // Purpur end

@@ -29,7 +29,7 @@ if (!file(".git").exists()) {
 
 rootProject.name = "tentacles"
 
-for (name in listOf("tentacles-api", "tentacles-server")) {
+for (name in listOf("tentacles-api", "tentacles-server", "tentacles-checkstyle")) {
     val projName = name.lowercase(Locale.ENGLISH)
     include(projName)
     findProject(":$projName")!!.projectDir = file(name)
