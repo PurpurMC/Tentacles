@@ -1,3 +1,4 @@
+import io.papermc.paperweight.checkstyle.PaperCheckstyleExt
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.gradle.api.tasks.testing.logging.TestLogEvent
 
@@ -23,6 +24,11 @@ paperweight {
             outputFile = file("tentacles-api/build.gradle.kts")
             patchFile = file("tentacles-api/build.gradle.kts.patch")
         }
+        patchFile {
+            path = "purpur-checkstyle/build.gradle.kts"
+            outputFile = file("tentacles-checkstyle/build.gradle.kts")
+            patchFile = file("tentacles-checkstyle/build.gradle.kts.patch")
+        }
         patchRepo("paperApi") {
             upstreamPath = "paper-api"
             patchesDir = file("tentacles-api/paper-patches")
@@ -34,16 +40,57 @@ paperweight {
             patchesDir = file("tentacles-api/purpur-patches")
             outputDir = file("purpur-api")
         }
+        patchRepo("paperCheckstyle") {
+            upstreamPath = "paper-checkstyle"
+            patchesDir = file("tentacles-checkstyle/paper-patches")
+            outputDir = file("paper-checkstyle")
+        }
+        patchDir("purpurCheckstyle") {
+            upstreamPath = "purpur-checkstyle"
+            excludes = setOf("build.gradle.kts", "build.gradle.kts.patch", "paper-patches")
+            patchesDir = file("tentacles-checkstyle/purpur-patches")
+            outputDir = file("purpur-checkstyle")
+        }
+        patchRepo("paperCheckstyleConfig") {
+            upstreamPath = ".checkstyle"
+            patchesDir = file("tentacles-checkstyle/config-patches")
+            outputDir = file(".checkstyle")
+        }
     }
 }
 
 subprojects {
-    apply(plugin = "java-library")
-    apply(plugin = "maven-publish")
+    apply {
+        plugin("java-library")
+        plugin("maven-publish")
+    }
 
     extensions.configure<JavaPluginExtension> {
         toolchain {
             languageVersion = JavaLanguageVersion.of(25)
+        }
+    }
+
+    val tempDisabled = setOf("tentacles-server", "purpur-server", "paper-server", "test-plugin")
+
+    if (name !in tempDisabled) {
+        apply { plugin("io.papermc.paperweight.paper-checkstyle") }
+        extensions.configure<PaperCheckstyleExt> {
+            typeUseAnnotationsFile.set(rootProject.layout.projectDirectory.file(".checkstyle/type_use_annotations.txt"))
+        }
+
+        /*tasks.withType<PaperCheckstyleTask>().configureEach {
+            configDirectory = rootProject.layout.projectDirectory.dir(".checkstyle")
+            // configFile = layout.projectDirectory.file(".checkstyle/checkstyle.xml").asFile // use the base file if not overwritten
+            maxHeapSize = "2g"
+            reports {
+                xml.required = true
+                html.required = true
+            }
+        }*/
+
+        dependencies {
+            "checkstyle"(project(":tentacles-checkstyle"))
         }
     }
 
