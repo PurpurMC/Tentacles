@@ -61,6 +61,6 @@ purpur-checkstyle
 paper-api
 paper-server
 paper-checkstyle
-.checkstyle
+/.checkstyle
 *.jar
 test-plugin.settings.gradle.kts

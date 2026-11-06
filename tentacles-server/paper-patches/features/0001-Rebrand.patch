@@ -4,6 +4,19 @@ Date: Fri, 11 Apr 2025 10:35:57 +0300
 Subject: [PATCH] Rebrand
 
 
+diff --git a/.checkstyle/checkstyle.xml b/.checkstyle/checkstyle.xml
+index d6024f721a91ade35ae3074b017ff65272740d6e..347504e9b57d82f02ab6cb9addb40bb987f0d752 100644
+--- a/.checkstyle/checkstyle.xml
++++ b/.checkstyle/checkstyle.xml
+@@ -4,7 +4,7 @@
+ <module name="Checker">
+     <!--minecraft sources are decompiled and still maintained as patches, so we don't control their format-->
+     <module name="BeforeExecutionExclusionFileFilter">
+-        <property name="fileNamePattern" value="[\\/]purpur-server[\\/]src[\\/]minecraft[\\/]"/>
++        <property name="fileNamePattern" value="[\\/]tentacles-server[\\/]src[\\/]minecraft[\\/]"/>
+     </module>
+     <!--generated sources are written by the generator, so we don't control their format-->
+     <module name="BeforeExecutionExclusionFileFilter">
 diff --git a/src/main/java/com/destroystokyo/paper/console/PaperConsole.java b/src/main/java/com/destroystokyo/paper/console/PaperConsole.java
 index 7a389c2ab1441ab1623ac81ad234ba640fae988c..666ea000b8953483bf2c7bfe760177593dcecbc2 100644
 --- a/src/main/java/com/destroystokyo/paper/console/PaperConsole.java
