@@ -1,6 +1,6 @@
 --- a/purpur-server/build.gradle.kts
 +++ b/purpur-server/build.gradle.kts
-@@ -33,9 +_,33 @@
+@@ -34,9 +_,33 @@
              outputDir = rootDirectory.dir("paper-server")
          }
      }
@@ -35,7 +35,7 @@
      /*updatingMinecraft { // Purpur start - Rebrand - we don't need this
          //oldPaperCommit = "e5fe71723e2ffde7cc9fafc085ac3bb73e63175e"
      }*/ // Purpur end - Rebrand - we don't need this
-@@ -105,10 +_,14 @@
+@@ -114,10 +_,14 @@
      main {
          java { srcDir("../paper-server/src/main/java") }
          resources { srcDir("../paper-server/src/main/resources") }
@@ -50,7 +50,7 @@
      }
  }
  val log4jPlugins = sourceSets.create("log4jPlugins") {
-@@ -137,7 +_,7 @@
+@@ -146,7 +_,7 @@
  }
  
  dependencies {
@@ -59,7 +59,16 @@
      implementation(platform("ca.spottedleaf.leafpile:bom:1.3.2"))
      implementation("ca.spottedleaf.leafpile:common")
      implementation("ca.spottedleaf.leafpile:concurrentutil")
-@@ -206,14 +_,14 @@
+@@ -202,7 +_,7 @@
+     implementation("me.lucko:spark-api:0.1-20240720.200737-2")
+     implementation("me.lucko:spark-paper:1.10.191")
+ 
+-    checkstyle(project(":purpur-checkstyle"))
++    checkstyle(project(":tentacles-checkstyle"))
+ }
+ 
+ tasks.jar {
+@@ -217,14 +_,14 @@
          val gitBranch = git.exec(providers, "rev-parse", "--abbrev-ref", "HEAD").get().trim()
          attributes(
              "Main-Class" to "org.bukkit.craftbukkit.Main",
