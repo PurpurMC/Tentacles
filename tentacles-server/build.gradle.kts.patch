@@ -56,7 +56,7 @@
  dependencies {
 -    implementation(project(":purpur-api")) // Purpur
 +    implementation(project(":tentacles-api")) // Purpur // Tentacles
-     implementation(platform("ca.spottedleaf.leafpile:bom:1.3.2"))
+     implementation(platform("ca.spottedleaf.leafpile:bom:1.3.3"))
      implementation("ca.spottedleaf.leafpile:common")
      implementation("ca.spottedleaf.leafpile:concurrentutil")
 @@ -202,7 +_,7 @@
